@@ -1,0 +1,22 @@
+.todo-form {
+  max-width: 600px;
+}
+
+.circle {
+  position: relative;
+  top: 6px;
+  right: 2px;
+  height: 20px;
+  width: 20px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.orange {
+  background-color: #ffa500;
+}
+
+.green {
+  background-color: #008000;
+}

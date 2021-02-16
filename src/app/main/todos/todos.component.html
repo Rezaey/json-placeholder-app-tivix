@@ -1,0 +1,82 @@
+<div class="container">
+  <h3>Add a New Todo</h3>
+  <div class="todo-form">
+    <form (ngSubmit)="onAddTodos(TodoForm)" #TodoForm="ngForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Title</label>
+        <input
+          type="email"
+          class="form-control"
+          placeholder="Enter title"
+          name="title"
+          required
+          ngModel
+        />
+        <small id="emailHelp" class="form-text text-muted"
+          >Your todo title.</small
+        >
+      </div>
+      <div class="form-check mb-3">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          name="completed"
+          ngModel
+        />
+        <label class="form-check-label" for="flexCheckChecked">
+          This task is completed.
+        </label>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="!TodoForm.valid"
+        style="min-width: 7.3em"
+      >
+        Add Todo
+      </button>
+    </form>
+  </div>
+  <div *ngIf="todos.length" class="mb-4">
+    <hr />
+    <div class="dropdown mt-2" style="max-width: fit-content" appDropdown>
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {{ selected }}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a
+          class="dropdown-item"
+          *ngFor="let selection of selections"
+          (click)="setSelecetion(selection)"
+          >{{ selection }}</a
+        >
+      </div>
+    </div>
+    <div class="row mt-4" *ngFor="let todo of todos">
+      <div class="col-md-12">
+        <div class="card" style="width: 100%; display: block">
+          <div class="card-body">
+            <h5 class="card-title">{{ todo.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">
+              Created by: {{ todo.userId }}
+            </h6>
+            <p class="card-text">
+              <span
+                class="circle"
+                [ngClass]="todo.completed ? 'green' : 'orange'"
+              ></span>
+              {{ todo.completed ? " completed" : " not completed" }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

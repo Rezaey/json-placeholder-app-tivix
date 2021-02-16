@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "./services/auth.service";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
-export class AppComponent {
-  title = 'JSONPH';
+export class AppComponent implements OnInit {
+  title = "JSONPH";
+  user = null;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.user.subscribe((ur) => {
+      this.user = ur;
+    });
+  }
 }
